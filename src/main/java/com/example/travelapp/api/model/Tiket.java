@@ -13,13 +13,16 @@ public class Tiket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "id_penumpang tidak boleh kosong")
-    @JsonProperty("id_penumpang")
-    private Long idPenumpang;
 
-    @NotEmpty(message = "id_travel tidak boleh kosong")
+    @ManyToOne
+    @JoinColumn(name = "id_penumpang", referencedColumnName = "id")
+    @JsonProperty("id_penumpang")
+    private Penumpang idPenumpang;
+
+    @ManyToOne
+    @JoinColumn(name = "id_travel", referencedColumnName = "id")
     @JsonProperty("id_travel")
-    private Long idTravel;
+    private Travel idTravel;
 
     private LocalDateTime jadwal;
 
@@ -31,19 +34,19 @@ public class Tiket {
         this.id = id;
     }
 
-    public Long getIdPenumpang() {
+    public Penumpang getIdPenumpang() {
         return idPenumpang;
     }
 
-    public void setIdPenumpang(Long idPenumpang) {
+    public void setIdPenumpang(Penumpang idPenumpang) {
         this.idPenumpang = idPenumpang;
     }
 
-    public Long getIdTravel() {
+    public Travel getIdTravel() {
         return idTravel;
     }
 
-    public void setIdTravel(Long idTravel) {
+    public void setIdTravel(Travel idTravel) {
         this.idTravel = idTravel;
     }
 
